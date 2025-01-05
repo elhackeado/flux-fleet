@@ -39,10 +39,16 @@ metadata:
   name: minimal-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/issuer: "letsencrypt-staging"
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - tipcilabs.mooo.com
+    secretName: tipcilabs-moo-com-tls
   rules:
-  - http:
+  - host: tipcilabs.mooo.com
+    http:
       paths:
       - path: /
         pathType: Prefix
