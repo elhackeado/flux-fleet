@@ -55,19 +55,12 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: scripts-ingress
-  namespace: scripts
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    cert-manager.io/issuer: "letsencrypt-staging"
 spec:
   ingressClassName: nginx
-  tls:
-  - hosts:
-    - tipcilabs.mooo.com
-    secretName: tipcilabs-moo-com-tls
   rules:
-  - host: tipcilabs.mooo.com
-    http:
+  - http:
       paths:
       - path: /scripts
         pathType: Prefix
